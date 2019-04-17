@@ -1,0 +1,26 @@
+ create table user(
+     uid int(30) primary key auto_increment not null,
+     username varchar(60) unique not null,
+     email varchar(80) unique not null,
+     password varchar(50) not null);
+
+
+ create table post(
+     pid int(30) primary key auto_increment not null,
+     title varchar(100) not null,
+     body varchar(100) not null,
+     uid int(30) not null);
+
+
+ create table comments(
+     cid int(30) primary key auto_increment not null,
+     cbody varchar(100) not null,
+     uid int(30) not null,
+     pid int(30) not null);
+
+
+ alert table post add foreign key(uid) references user(uid);
+
+alter table comments add foreign key(uid) references user(uid);
+
+alter table comments add foreign key(pid) references post(pid);
